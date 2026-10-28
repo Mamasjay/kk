@@ -44,7 +44,7 @@ jobs:
         export PATH=$PWD/clang/bin:$PATH
 
         # patching bpf spoof
-        curl -s "https://raw.githubusercontent.com/Moon-Playground/kernel_build/refs/heads/gale/patches/uname-Add-support-for-fake-uname.patch" | git am
+        curl -s "https://raw.githubusercontent.com/Moon-Playground/kernel_build/refs/heads/gale/patches/uname-Add-support-for-fake-uname.patch" | patch -p1
         echo "CONFIG_FAKE_UNAME_5_10=y" >> arch/arm64/configs/earth_defconfig
         
         curl -LSs "${{ github.event.inputs.kernelsu_setup }}" | bash -s ${{ github.event.inputs.kernelsu_branch }}
